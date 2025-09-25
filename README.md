@@ -9,6 +9,6 @@ C'est un site internet qu'on a fait a deux, le but c'était de faire un blog per
 
 https://cars.gamer.gd/
 
-### Contributeurs
+### Auteurs
 
 Site réalisé par Samuel Courbet et Thomas Claudin.
