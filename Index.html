@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="style_Index.css">
+</head>
+<body>
+
+<!--Bouton langues-->
+<input type="checkbox" id="lang-toggle" class="lang-checkbox">
+<label for="lang-toggle" class="lang-button">FR/EN</label>
+
+<div class="container">
+    <div class="login-container">
+        <div class="login-form">
+            <h1 lang="fr">Connexion</h1>
+            <h1 lang="en">Login</h1>
+            <p class="subtitle" lang="fr">Veuillez vous connecter pour accéder à votre compte</p>
+            <p class="subtitle" lang="en">Please log in to access your account</p>
+
+            <div lang="fr" class="form-lang">
+                <form action="Accueil.html" method="post" class="horizontal-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username">Nom d'utilisateur</label>
+                            <input type="text" id="username" name="username" required placeholder="Entrez votre nom d'utilisateur">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" id="password" name="password" required placeholder="Entrez votre mot de passe">
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember"> Se souvenir de moi
+                        </label>
+                        <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">Se connecter</button>
+                </form>
+            </div>
+
+            <div lang="en" class="form-lang">
+                <form action="Accueil.html" method="post" class="horizontal-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required placeholder="Enter your username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required placeholder="Enter your password">
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember"> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">Log in</button>
+                </form>
+            </div>
+
+            <div class="signup-link" lang="fr">
+                <p lang="fr">Pas encore de compte ? <a href="#" lang="fr">S'inscrire</a></p>
+            </div>
+            <div class="signup-link" lang="en">
+                <p lang="en">Don't have an account yet? <a href="#" lang="en">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

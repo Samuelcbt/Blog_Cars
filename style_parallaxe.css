@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+
+.parallax-section {
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.parallax-section .content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 900px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.parallax-section h1, .parallax-section h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    color: #ffcc80;
+}
+
+.parallax-section p {
+    font-size: 1.6em;
+    line-height: 1.8;
+    color: #ffeaa7;
+}
+
+#section1 {
+    background-image: url('images/formes_flash.jpg');
+    background-blend-mode: overlay;
+}
+
+#section2 {
+    background-image: url('images/dinoco_flash.jpg');
+    background-blend-mode: overlay;
+}
+
+#section3 {
+    background-image: url('images/radiator_springs_flash.jpg');
+    background-blend-mode: overlay;
+}
+
+#section4 {
+    background-image: url('images/doc_flash.jpg');
+    background-blend-mode: overlay;
+}
+
+#section5 {
+    background-image: url('images/gris_flash.jpg');
+    background-blend-mode: overlay;
+}
+
+#section5 .gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#section5 .gallery img {
+    width: 320px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid #ffab91;
+}
+
+#section5 .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 171, 145, 0.7);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .parallax-section h1, .parallax-section h2 {
+        font-size: 2.5em;
+    }
+
+    .parallax-section p {
+        font-size: 1.3em;
+    }
+
+    #section5 .gallery img {
+        width: 280px;
+        height: 180px;
+    }
+}
+
+.lang-checkbox {
+	display: none;
+}
+
+.lang-button {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 1000;
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ffcc80;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	transition: background-color 0.3s ease;
+}
+
+.lang-button:hover {
+	background-color: #e6b94d;
+}
+
+/* Styles du menu */
+.menu-checkbox {
+	display: none;
+}
+
+.menu-button {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	z-index: 1000;
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ffcc80;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+	background-color: #e6b94d;
+}
+
+.sidebar {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 200px;
+	height: 100vh;
+	background-color: rgb(200, 0, 0);
+	padding: 1rem;
+	box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+	z-index: 10;
+	display: none;
+}
+
+.menu-checkbox:checked ~ .container .sidebar {
+	display: block;
+}
+
+.sidebar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	top: 30px;
+}
+
+.sidebar li {
+	margin-bottom: 1rem;
+}
+
+.sidebar a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	display: block;
+	padding: 0.5rem;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+	background-color: rgb(255, 100, 100);
+}
+
+/* fonctionalité de changement de langues */
+.lang-checkbox:not(:checked) ~ .container .parallax-section h1:lang(en),
+.lang-checkbox:not(:checked) ~ .container .parallax-section h2:lang(en),
+.lang-checkbox:not(:checked) ~ .container .parallax-section p:lang(en),
+.lang-checkbox:not(:checked) ~ .container .sidebar a:lang(en) {
+	display: none !important;
+}
+
+.lang-checkbox:checked ~ .container .parallax-section h1:lang(fr),
+.lang-checkbox:checked ~ .container .parallax-section h2:lang(fr),
+.lang-checkbox:checked ~ .container .parallax-section p:lang(fr),
+.lang-checkbox:checked ~ .container .sidebar a:lang(fr) {
+	display: none !important;
+}
+
+.lang-checkbox:not(:checked) ~ .container .parallax-section h1:lang(fr),
+.lang-checkbox:not(:checked) ~ .container .parallax-section h2:lang(fr),
+.lang-checkbox:not(:checked) ~ .container .parallax-section p:lang(fr),
+.lang-checkbox:not(:checked) ~ .container .sidebar a:lang(fr) {
+	display: block;
+}
+
+.lang-checkbox:checked ~ .container .parallax-section h1:lang(en),
+.lang-checkbox:checked ~ .container .parallax-section h2:lang(en),
+.lang-checkbox:checked ~ .container .parallax-section p:lang(en),
+.lang-checkbox:checked ~ .container .sidebar a:lang(en) {
+	display: block;
+}
+
+.container .parallax-section h1:not([lang]),
+.container .parallax-section h2:not([lang]),
+.container .parallax-section p:not([lang]),
+.container .sidebar a:not([lang]) {
+	display: none;
+}

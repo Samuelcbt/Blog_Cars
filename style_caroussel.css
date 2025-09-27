@@ -1,0 +1,350 @@
+@layer base, demo;
+@import url(https://fonts.bunny.net/css?family=abel:400);
+
+@layer demo {
+	.carousel {
+		--items: 6;
+		--carousel-duration: 40s;
+		@media (width > 600px) {
+			--carousel-duration: 30s;
+		}
+		--carousel-width: min(
+			80vw,
+			1200px
+		); 
+		--carousel-item-width: 280px;
+		--carousel-item-height: 450px;
+		--carousel-item-gap: 2rem;
+
+		--clr-cta: rgb(216, 204, 39);
+
+		position: relative;
+		width: var(--carousel-width);
+		height: var(--carousel-item-height);
+		overflow: clip;
+
+		&[mask] {
+			mask-image: linear-gradient(
+				to right,
+				transparent,
+				rgb(255, 187, 42) 10% 90%,
+				transparent
+			);
+		}
+
+		&[reverse] > article {
+			animation-direction: reverse;
+		}
+		&:hover > article {
+			animation-play-state: paused;
+		}
+	}
+	.carousel > article {
+		position: absolute;
+		top: 0;
+		left: calc(100% + var(--carousel-item-gap));
+		width: var(--carousel-item-width);
+		height: var(--carousel-item-height);
+		display: grid;
+		grid-template-rows: 200px auto 1fr auto;
+		gap: 0.25rem;
+		border: 1px solid rgb(255, 187, 42);
+
+		padding-block-end: 1rem;
+		border-radius: 10px;
+		background: rgb(255, 0, 0);
+		color: white;
+
+		will-change: transform;
+		animation-name: marquee;
+		animation-duration: var(--carousel-duration);
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-delay: calc(
+			var(--carousel-duration) / var(--items) * 1 * var(--i) * -1
+		);
+		&:nth-child(1) {
+			--i: 0;
+		}
+		&:nth-child(2) {
+			--i: 1;
+		}
+		&:nth-child(3) {
+			--i: 2;
+		}
+		&:nth-child(4) {
+			--i: 3;
+		}
+		&:nth-child(5) {
+			--i: 4;
+		}
+		&:nth-child(6) {
+			--i: 5;
+		}
+		&:nth-child(7) {
+			--i: 6;
+		}
+		&:nth-child(8) {
+			--i: 7;
+		}
+	}
+	.carousel img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+
+		border-radius: 10px 10px 0 0;
+		transition: transform 0.3s ease, border-radius 0.3s ease;
+	}
+	.carousel img:hover {
+		transform: scale(1.1);
+		border-radius: 10px;
+	}
+	.carousel > article > *:not(img) {
+		padding: 0 1rem;
+	}
+	.carousel > article > div {
+		grid-row: span 2;
+		display: grid;
+		grid-template-rows: subgrid;
+		font-size: 0.8rem;
+	}
+	.carousel > article h2 {
+		font-size: 1.2rem;
+		font-weight: 300;
+		padding-block: 0.75rem 0.25rem;
+		margin: 0;
+	}
+	.carousel > article p {
+		margin: 0;
+	}
+	.carousel > article a {
+		text-decoration: none;
+		text-transform: lowercase;
+		border: 1px solid var(--clr-cta);
+		color: light-dark(var(--clr-cta), white);
+		border-radius: 3px;
+		padding: 0.25rem 0.5rem;
+		place-self: start;
+		transition: 150ms ease-in-out;
+		&:hover,
+		&:focus-visible {
+			background-color: var(--clr-cta);
+			color: white;
+			outline: none;
+		}
+	}
+	.speed-info {
+		font-size: 0.8rem;
+		color: var(--clr-cta);
+		background: rgba(255, 0, 0, 0.8);
+		padding: 0.25rem 0.5rem;
+		border-radius: 3px;
+		margin-top: 0.5rem;
+		text-align: center;
+	}
+
+
+
+	@keyframes marquee {
+		100% {
+			transform: translateX(
+				calc(
+					(var(--items) * (var(--carousel-item-width) + var(--carousel-item-gap))) *
+						-1
+				)
+			);
+		}
+	}
+}
+
+@layer base {
+	* {
+		box-sizing: border-box;
+	}
+	:root {
+		color-scheme: light dark;
+
+		--bg-dark: rgba(255, 0, 0, 0.5);
+		--bg-light: rgb(255, 200, 200);
+		--txt-light: rgb(10, 10, 10);
+		--txt-dark: rgb(245, 245, 245);
+	}
+body {
+		background-color: light-dark(var(--bg-light), var(--bg-dark));
+		color: light-dark(var(--txt-light), var(--txt-dark));
+		min-height: 100svh;
+		margin: 0;
+		padding: 0;
+		font-size: 1rem;
+		font-family: "Abel", sans-serif;
+		line-height: 1.5;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.container h1 {
+		font-size: 2.5rem;
+		font-weight: bold;
+		color: rgb(255, 187, 42);
+		text-align: center;
+		margin: 1rem 0;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	}
+
+	.sidebar {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 200px;
+		height: 100vh;
+		background-color: rgb(200, 0, 0);
+		padding: 1rem;
+		box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+		z-index: 10;
+		display: none;
+	}
+
+	.menu-checkbox:checked ~ .container .sidebar {
+		display: block;
+	}
+
+	.sidebar ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		position: relative;
+		top: 30px;
+	}
+
+	.sidebar li {
+		margin-bottom: 1rem;
+	}
+
+	.sidebar a {
+		color: white;
+		text-decoration: none;
+		font-weight: bold;
+		display: block;
+		padding: 0.5rem;
+		border-radius: 5px;
+		transition: background-color 0.3s;
+	}
+
+	.sidebar a:hover {
+		background-color: rgb(255, 100, 100);
+	}
+}
+.carousel article .speed-info {
+  display: none;
+  font-size: 14px;
+  margin-top: 8px;
+  color: #333;
+  font-weight: bold;
+}
+
+.carousel article:hover .speed-info {
+  display: block;
+}
+
+.carousel article .speed-info::before {
+  content: "Vitesse: " attr(data-speed);
+}
+
+/* Styles du menu */
+.menu-checkbox {
+	display: none;
+}
+
+.menu-button {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	z-index: 1000;
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: var(--clr-cta);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-family: "Abel", sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+	background-color: rgb(200, 180, 30);
+}
+
+/* Styles des langues */
+.lang-checkbox {
+	display: none;
+}
+
+.lang-button {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	z-index: 1000;
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: var(--clr-cta);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-family: "Abel", sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	transition: background-color 0.3s ease;
+}
+
+.lang-button:hover {
+	background-color: rgb(200, 180, 30);
+}
+
+/* fonctionalité de changment de langues */
+.lang-checkbox:not(:checked) ~ .container h1:lang(en),
+.lang-checkbox:not(:checked) ~ .container .carousel h2:lang(en),
+.lang-checkbox:not(:checked) ~ .container .carousel p:lang(en),
+.lang-checkbox:not(:checked) ~ .container .carousel a:lang(en),
+.lang-checkbox:not(:checked) ~ .container .sidebar a:lang(en) {
+	display: none !important;
+}
+
+.lang-checkbox:checked ~ .container h1:lang(fr),
+.lang-checkbox:checked ~ .container .carousel h2:lang(fr),
+.lang-checkbox:checked ~ .container .carousel p:lang(fr),
+.lang-checkbox:checked ~ .container .carousel a:lang(fr),
+.lang-checkbox:checked ~ .container .sidebar a:lang(fr) {
+	display: none !important;
+}
+
+.lang-checkbox:not(:checked) ~ .container h1:lang(fr),
+.lang-checkbox:not(:checked) ~ .container .carousel h2:lang(fr),
+.lang-checkbox:not(:checked) ~ .container .carousel p:lang(fr),
+.lang-checkbox:not(:checked) ~ .container .carousel a:lang(fr),
+.lang-checkbox:not(:checked) ~ .container .sidebar a:lang(fr) {
+	display: block;
+}
+
+.lang-checkbox:checked ~ .container h1:lang(en),
+.lang-checkbox:checked ~ .container .carousel h2:lang(en),
+.lang-checkbox:checked ~ .container .carousel p:lang(en),
+.lang-checkbox:checked ~ .container .carousel a:lang(en),
+.lang-checkbox:checked ~ .container .sidebar a:lang(en) {
+	display: block;
+}
+
+.container h1:not([lang]),
+.container .carousel h2:not([lang]),
+.container .carousel p:not([lang]),
+.container .carousel a:not([lang]),
+.container .sidebar a:not([lang]) {
+	display: none;
+}
